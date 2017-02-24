@@ -13,9 +13,9 @@
 > markdown解析部分使用了marked这个库，语法高亮用highlight
 
 ``` bash
-# cd myblog
+# cd studyPro
 # npm install
-# node app.js
+# npm start
 # localhost:9000
 # localhost:9000/admin
 ```

@@ -41,7 +41,10 @@ const router = new VueRouter({
 	                },
 	                beforeEnter:function(to,from,next){
 	                	console.log('beforeEnter');
-	                	next()
+	                	next(()=>{
+	                		alert('123');
+	                		console.log('beforeEnter next')
+	                	})
 	                }
             	}
             ]},
@@ -63,11 +66,9 @@ const router = new VueRouter({
 
 router.beforeEach((to,from,next)=>{
 	console.log('beforeEach',to.path);
-	if(to.meta.checkMatch){
-		next()
-	} else {
-		next()
-	}
+	next(()=>{
+		console.log('beforeEach next')
+	})
 });
 
 router.afterEach(route=>{

@@ -1,12 +1,13 @@
 <template>
     <section>
     	<div class="memo-preview-div">
+            <h5>{{commonTitle}}</h5>
     		<div class="memo-item-title">
                 <span>{{memoItem.memoTitle}}</span>
             </div>
-            <div class="memo-item-create-time" v-if="memoItem.memoCreateDateStr">
+            <div class="memo-item-create-time" v-if="memoCreateDateStr">
                 <div class="text">创建时间:</div>
-                <div class="date">{{memoItem.memoCreateDateStr}}</div>
+                <div class="date">{{memoCreateDateStr}}</div>
             </div>
     		<div class="memo-item-end-date">
                 <div class="text">到期时间:</div>
@@ -20,22 +21,16 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters,mapState} from 'vuex'
 export default {
     beforeRouteEnter:function(to,from,next){
-        console.log('beforeRouteEnter');
-        next(vm=>{
-            vm.getMemo();
-            console.log('test');
-        })
+        next()
     },
     beforeRouteUpdate:function(to,from,next){
-        console.log('beforeRouteUpdate');
-        next();
+        next()
     },
     beforeRouteLeave:function(to,from,next){
-        console.log('beforeRouteLeave');
-        next();
+        next()
     },
     mounted: function(){
         Date.prototype.format = function(format) {
@@ -58,21 +53,26 @@ export default {
             }
             return format;
         }
-    	// this.getMemo();
+    	this.getMemo();
     },
-    computed:mapGetters({
-        memoItem:'getMemoItem'
-    }),
+    computed: {
+        ...mapGetters({
+          memoItem:'getMemoItem'
+        }),
+        ...mapState({
+            commonTitle:state=>state.memoitem.title
+        }),
+        memoCreateDateStr:function(){
+            if(this.memoItem.memoCreateDate){
+                return new Date(this.memoItem.memoCreateDate).format('yyyy-MM-dd hh:mm:ss');
+            } else {
+                return ""
+            }
+        }
+    },
     watch:{
         '$route':function(to,from){
             this.getMemo();
-        },
-        memoItem:function(){
-            if(this.memoItem.memoCreateDate){
-                this.memoItem.memoCreateDateStr = new Date(this.memoItem.memoCreateDate).format('yyyy-MM-dd hh:mm:ss');
-            } else {
-                this.memoItem.memoCreateDateStr = ""
-            }
         }
     },
     methods:{

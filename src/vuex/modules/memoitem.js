@@ -1,7 +1,8 @@
 import * as types from '../types'
 
 const state={
-	memoItem:[]
+	memoItem:[],
+	title:"这是备忘录"
 }
 
 const mutations={

@@ -54,6 +54,7 @@ export default {
             })
         },
         memoPreview:function(item){
+        	debugger
         	this.$router.push('/memo/memoPreview'+item._id+'')
         }
     }

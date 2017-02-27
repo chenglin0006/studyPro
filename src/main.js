@@ -19,13 +19,14 @@ import store from './vuex/store.js'
 Vue.use(Vuex)
 
 //全局安装路由功能
-Vue.use(VueRouter);
+Vue.use(VueRouter);  //plugin.install
 Vue.use(VueResource);
 Vue.use(Tooltip);
 Vue.use(Input);
 
-//创建 router 实例，然后传 `routes` 配置
+//创建 VueRouter 实例，然后传 `routes` 配置，最后将VueRouter 实例传入vue实例的options中
 const router = new VueRouter({
+	mode:'hash',
 	routes: [
 		{path: '/', component: home},		//component:一个路由对应一个视图
 		{path: '/backHome', redirect:'/'},
@@ -40,11 +41,7 @@ const router = new VueRouter({
 	                	backhome:backHome
 	                },
 	                beforeEnter:function(to,from,next){
-	                	console.log('beforeEnter');
-	                	next(()=>{
-	                		alert('123');
-	                		console.log('beforeEnter next')
-	                	})
+	                	next()
 	                }
             	}
             ]},
@@ -52,7 +49,8 @@ const router = new VueRouter({
 		{name:'recommand',path: '/recommand', component: recommand},
 		{path: '/articleDetails:id', component: articleDetails},
 		{path: '/classify', component: classify},
-		{path: '/label', component: label}
+		{path: '/label', component: label},
+		{path: '*', component: home}
 	],
 	//模拟锚点的滚动
 	scrollBehavior :function(to, from, savedPosition) {
@@ -65,15 +63,10 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to,from,next)=>{
-	console.log('beforeEach',to.path);
-	next(()=>{
-		console.log('beforeEach next')
-	})
+	next()
 });
 
 router.afterEach(route=>{
-	console.log('afterEach');
-	document.title = route.meta.title?route.meta.title:"test"
 })
 
 

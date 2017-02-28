@@ -24,12 +24,15 @@
 import {mapGetters,mapState} from 'vuex'
 export default {
     beforeRouteEnter:function(to,from,next){
+        console.log('beforeRouteEnter');
         next()
     },
     beforeRouteUpdate:function(to,from,next){
+        console.log('beforeRouteUpdate');
         next()
     },
     beforeRouteLeave:function(to,from,next){
+        console.log('beforeRouteLeave');
         next()
     },
     mounted: function(){

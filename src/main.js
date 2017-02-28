@@ -31,16 +31,17 @@ const router = new VueRouter({
 		{path: '/', component: home},		//component:一个路由对应一个视图
 		{path: '/backHome', redirect:'/'},
 		{path: '/home', component: home},
-		{path: '/memo', component: memo,name:'memo',meta:{title:'备忘录',checkMatch:true},
+		{path: '/memo', component: memo,name:'memo',meta:{title:'备忘录'},
 			children: [
                 {
-                	path: 'memoPreview:memoId',meta:{title:'备忘录'},query:{memoId:''},
+                	path: 'memoPreview:memoId',meta:{title:'备忘录',checkMatch:true},query:{memoId:''},
                 	components:  			//components:一个路由对应多个视图
                 	{
 	                	default:memoItem,
 	                	backhome:backHome
 	                },
 	                beforeEnter:function(to,from,next){
+	                	console.log('beforeEnter');
 	                	next()
 	                }
             	}
@@ -63,10 +64,12 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to,from,next)=>{
-	next()
+	console.log('beforeEach');
+	next();
 });
 
 router.afterEach(route=>{
+	console.log('afterEach');
 })
 
 

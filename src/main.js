@@ -24,7 +24,7 @@ Vue.use(VueResource);
 Vue.use(Tooltip);
 Vue.use(Input);
 
-//创建 VueRouter 实例，然后传 `routes` 配置，最后将VueRouter 实例传入vue实例的options中
+//创建 VueRouter 实例 ,然后传入options中
 const router = new VueRouter({
 	mode:'hash',
 	routes: [

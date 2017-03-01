@@ -1,6 +1,7 @@
 require('es6-promise').polyfill();
 import Vue from 'vue'
-import {Tooltip, Input} from 'element-ui'
+import elementui from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
 
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
@@ -21,8 +22,7 @@ Vue.use(Vuex)
 //全局安装路由功能
 Vue.use(VueRouter);  //plugin.install
 Vue.use(VueResource);
-Vue.use(Tooltip);
-Vue.use(Input);
+Vue.use(elementui);
 
 //创建 VueRouter 实例 ,然后传入options中
 const router = new VueRouter({

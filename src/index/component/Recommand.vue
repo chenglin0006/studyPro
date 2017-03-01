@@ -3,6 +3,11 @@
 		<div class="content-panel-header">
 			<h4>文章推荐</h4>
 		</div>
+		<div class="main-recommand-text">
+			<el-input class="main-recommand-input" v-model="mainRecommanText" placeholder="请输入好文推荐主题"></el-input>
+			<el-button class="main-recommand-btn" @click="giveRecommandText">提交</el-button>
+
+		</div>
 		<div class="content-panel-content" v-if="recommandList&&recommandList.length">
             <h1>为您推荐以下文章</h1>
             <div class="content-panel-recommand">
@@ -26,6 +31,11 @@
 import { Message } from 'element-ui';
 import { mapGetters } from 'vuex';
 export default {
+	data(){
+		return {
+			mainRecommanText:''
+		}
+	},
 	mounted:function(){
 		this.getRecommandData();
 	},
@@ -56,6 +66,9 @@ export default {
                     Message.error('点赞失败')
                 }
             )
+		},
+		giveRecommandText:function(){
+			this.$store.dispatch('giveRecommandText',this.mainRecommanText);
 		}
 	}
 
@@ -80,5 +93,18 @@ export default {
 			top: 2px;
 			cursor:pointer;
 		}
+	}
+	.main-recommand-text{
+		position: relative;
+		top: 10px;
+		left: 10px;
+		margin-bottom: 10px;
+	}
+	.main-recommand-input{
+		width: 200px;
+		display: inline-block;
+	}
+	.main-recommand-btn{
+		display: inline-block;
 	}
 </style>

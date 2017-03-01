@@ -12,6 +12,7 @@
                 <p>{{individualitySignature}}</p>
             </div>
             <div class="archive">
+                <p v-if="recommandText">好文推荐主题：{{recommandText}}</p>
                 <div class="archive-left" @click="article">
                     <el-tooltip class="item" effect="dark" content="文章" placement="bottom">
                         <!-- <p>{{articleNumber}}</p> -->
@@ -51,6 +52,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
     name: 'app',
     data () {
@@ -110,6 +112,11 @@ export default {
                 el.style.height = contentHeight + 'px'
             }
         }
+    },
+    computed:{
+        ...mapGetters({
+          recommandText:'getRecommandText'
+        })
     }
 }
 </script>

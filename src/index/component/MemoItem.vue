@@ -25,7 +25,9 @@ import {mapGetters,mapState} from 'vuex'
 export default {
     beforeRouteEnter:function(to,from,next){
         console.log('beforeRouteEnter');
-        next()
+        next(vm=>{
+            vm.getMemo();
+        })
     },
     beforeRouteUpdate:function(to,from,next){
         console.log('beforeRouteUpdate');
@@ -56,7 +58,7 @@ export default {
             }
             return format;
         }
-    	this.getMemo();
+    	// this.getMemo();
     },
     computed: {
         ...mapGetters({

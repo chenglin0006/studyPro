@@ -28,9 +28,9 @@ Vue.use(Input);
 const router = new VueRouter({
 	mode:'hash',
 	routes: [
-		{path: '/', component: home},		//component:一个路由对应一个视图
+		{path: '/', component: home,meta:{title:"主页"}},		//component:一个路由对应一个视图
 		{path: '/backHome', redirect:'/'},
-		{path: '/home', component: home},
+		{path: '/home', component: home,meta:{title:"主页"}},
 		{path: '/memo', component: memo,name:'memo',meta:{title:'备忘录'},
 			children: [
                 {
@@ -46,21 +46,12 @@ const router = new VueRouter({
 	                }
             	}
             ]},
-		{path: '/about', component: about},
-		{name:'recommand',path: '/recommand', component: recommand},
-		{path: '/articleDetails:id', component: articleDetails},
+		{path: '/about', component: about,meta:{title:"关于我"}},
+		{name:'recommand',path: '/recommand', component: recommand,meta:{title:"好文推荐"}},
+		{path: '/articleDetails:id', component: articleDetails,meta:{title:"文章详情"}},
 		{path: '/classify', component: classify},
-		{path: '/label', component: label},
-		{path: '*', component: home}
-	],
-	//模拟锚点的滚动
-	scrollBehavior :function(to, from, savedPosition) {
-	  if (to.hash) {
-	    return {
-	      selector: to.hash
-	    }
-	  }
-	}
+		{path: '/label', component: label,meta:{title:"标签"}}
+	]
 })
 
 router.beforeEach((to,from,next)=>{
@@ -69,6 +60,9 @@ router.beforeEach((to,from,next)=>{
 });
 
 router.afterEach(route=>{
+	if(route.meta.title){
+		document.title = route.meta.title;
+	}
 	console.log('afterEach');
 })
 

@@ -21,6 +21,11 @@
 	                <router-view></router-view>
 	            </transition>
 			</div>
+			<div >
+				<transition name="fade" mode="out-in">
+	                <router-view name="backhome"></router-view>
+	            </transition>
+			</div>
 		</div>
 		<div class="content-panel-content" v-else>
             <div class="memo-panel">

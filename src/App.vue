@@ -35,7 +35,7 @@
             </div>
             <div class="nav-router">
                 <ul>
-                    <router-link to="/home"><li>首页</li></router-link>
+                    <router-link to="/home" tag="div"><li>首页</li></router-link>
                     <router-link :to="{path:'/recommand'}"><li>好文推荐</li></router-link>
                     <router-link :to="{name:'memo'}" active-class="u-link--Active" ><li>待办事项</li></router-link>
                     <router-link to="/about" tag="div"><li>关于我</li></router-link>

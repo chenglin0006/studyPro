@@ -10,9 +10,9 @@
             <div class="underline"></div>
             <div class="introduce">
                 <p>{{individualitySignature}}</p>
+                <p v-if="recommandText">好文推荐主题：{{recommandText}}</p>
             </div>
             <div class="archive">
-                <p v-if="recommandText">好文推荐主题：{{recommandText}}</p>
                 <div class="archive-left" @click="article">
                     <el-tooltip class="item" effect="dark" content="文章" placement="bottom">
                         <!-- <p>{{articleNumber}}</p> -->
